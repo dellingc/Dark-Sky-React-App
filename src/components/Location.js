@@ -36,7 +36,7 @@ class Location extends React.Component {
             <input type='submit' value='submit'></input>
             </form>
 
-            <p>Weather for {this.state.city}</p>
+            <h2>Weather for {this.state.city}</h2>
         </div>
     ) 
     }

@@ -4,13 +4,15 @@ import WeatherCard from './WeatherCard';
 import CurrentCard from './CurrentCard';
 import Location from './Location';
 import '../styles/App.css';
+import rain from '../images/rain.png'
 import moment from 'moment';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = { 
+    this.state = {
+      currentIcon: null, 
       currentSky: null, 
       currentTemp: null, 
       daily: [
@@ -31,6 +33,7 @@ class App extends React.Component {
 
       console.log(response.data)
       this.setState({
+        currentIcon: response.data.current.icon,
         currentSky: response.data.current.summary, 
         currentTemp: response.data.current.temperature, 
         daily: response.data.daily.data,
@@ -46,20 +49,22 @@ class App extends React.Component {
 
     for (let i = 1; i < 8; i++){
       cards.push(<WeatherCard 
-        time={moment.unix(this.state.daily[i].time).format('dddd')}
+        time={moment.unix(this.state.daily[i].time).format('dddd - MMM Do')}
         highTemp={Math.floor(this.state.daily[i].temperatureHigh)}
         lowTemp={Math.floor(this.state.daily[i].temperatureLow)} 
         precipProb={Math.floor(this.state.daily[i].precipProbability * 100)}
         summary={this.state.daily[i].summary}
+        icon={this.state.daily[i].icon}
       />)
     }
 
     return(
-      <div>
+      <div className='content'>
         <Location callAPI={this.getWeather}/>
         <div className='cards'>
           <CurrentCard 
-            time={moment.unix(this.state.daily[0].time).format('dddd')}
+            time={moment.unix(this.state.daily[0].time).format('dddd - MMM Do')}
+            currentIcon={this.state.currentIcon}
             currentSky={this.state.currentSky}
             currentTemp={Math.floor(this.state.currentTemp)}
             highTemp={Math.floor(this.state.daily[0].temperatureHigh)}
