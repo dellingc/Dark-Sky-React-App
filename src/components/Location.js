@@ -3,7 +3,7 @@ import React from 'react';
 class Location extends React.Component {
     constructor(props){
         super(props);
-        this.state = { location: '', city: 'Richmond, VA', newCity: ''}
+        this.state = { location: '', city: 'Chicago, IL', newCity: ''}
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -24,7 +24,7 @@ class Location extends React.Component {
     render(){
        return(
         <div>
-            <form onSubmit={this.onFormSubmit}>
+            <form onSubmit={this.onFormSubmit} onChange={this.handleChange}>
             <select id='location'>
                 <option value='?lat=41.8559&lon=-87.6310'>Chicago, IL</option>
                 <option value='?lat=36.0840&lon=-115.1646'>Las Vegas, NV</option>

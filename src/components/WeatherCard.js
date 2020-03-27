@@ -8,6 +8,7 @@ function WeatherCard(props) {
             <p>High: {props.highTemp} degrees</p>
             <p>Low: {props.lowTemp} degrees</p>
             <p>Rain Chance: {props.precipProb}%</p>
+            <p>Conditions: {props.summary}</p>
         </div>
     );
 }

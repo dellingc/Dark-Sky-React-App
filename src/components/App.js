@@ -38,7 +38,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.getWeather('?lat=37.5260&lon=-77.4416');
+    this.getWeather('?lat=41.8559&lon=-87.6310');
   }
 
   render() {
@@ -49,7 +49,8 @@ class App extends React.Component {
         time={moment.unix(this.state.daily[i].time).format('dddd')}
         highTemp={Math.floor(this.state.daily[i].temperatureHigh)}
         lowTemp={Math.floor(this.state.daily[i].temperatureLow)} 
-        precipProb={this.state.daily[i].precipProbability *100}
+        precipProb={Math.floor(this.state.daily[i].precipProbability * 100)}
+        summary={this.state.daily[i].summary}
       />)
     }
 
