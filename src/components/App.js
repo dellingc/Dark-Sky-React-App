@@ -44,7 +44,8 @@ class App extends React.Component {
         currentWindDir: response.data.current.windBearing,
         currentHumid: response.data.current.humidity,
         currentUV: response.data.current.uvIndex,
-        currentVis: response.data.current.visibility, 
+        currentVis: response.data.current.visibility,
+        currentDew: response.data.current.dewPoint, 
         daily: response.data.daily.data,
       })
   }
@@ -68,6 +69,7 @@ class App extends React.Component {
         humidity={Math.floor(this.state.daily[i].humidity * 100)}
         windDir={this.state.daily[i].windBearing}
         uvIndex={this.state.daily[i].uvIndex}
+        dewPoint={Math.floor(this.state.daily[i].dewPoint)}
       />)
     }
 
@@ -86,6 +88,7 @@ class App extends React.Component {
             currentHumid={Math.floor(this.state.currentHumid * 100)}
             currentUV={this.state.currentUV}
             currentVis={Math.floor(this.state.currentVis)}
+            currentDew={Math.floor(this.state.currentDew)}
           />
           </div>
           <div className='card-column'>

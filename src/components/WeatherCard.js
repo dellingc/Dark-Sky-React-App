@@ -69,17 +69,24 @@ class WeatherCard extends React.Component {
        return(
         <div className='weather-card'>
             <h3>{this.props.time}</h3>
-            <h4>Conditions: {this.props.summary}</h4>
+            <img src={this.renderSwitch(this.props.icon, this.props.highTemp)}
+            alt={this.props.icon} 
+            width='100' height='100'
+            title={this.props.icon}/>
+            <h3>{this.props.summary}</h3>
+            <div className='card-row'>
+            <div className='card-row-child-l'>
             <h4>High: {this.props.highTemp}&#176; F</h4>
             <h4>Low: {this.props.lowTemp}&#176; F</h4>
             <h4>Precip Chance: {this.props.precipProb}%</h4>
+            </div>
+            <div className='card-row-child-r'>
             <h4>Winds: {this.windSwitch(this.props.windDir) + ' ' + this.props.windSpeed} mph</h4>
             <h4>Humidity: {this.props.humidity}%</h4>
             <h4>UV Index: {this.props.uvIndex}</h4>
-            <img src={this.renderSwitch(this.props.icon, this.props.highTemp)}
-                 alt={this.props.icon} 
-                 width='100' height='100'
-                 title={this.props.icon}/>
+            </div>
+            </div>
+
         </div>
     ); 
     }

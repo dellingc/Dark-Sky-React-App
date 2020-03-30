@@ -70,18 +70,26 @@ class CurrentCard extends React.Component {
     render(){
       return(
         <div className='weather-card'>
-            <h3>Currently:</h3>
-            <h4>Current Temp: {this.props.currentTemp}&#176; F</h4>
-            <h4>Conditions: {this.props.currentSummary}</h4>
-            <h4>Winds: {this.windSwitch(this.props.currentWindDir) + ' ' + this.props.currentWind} mph</h4>
-            <h4>Humidity: {this.props.currentHumid}%</h4>
-            <h4>Visibility: {this.props.currentVis} miles</h4>
-            <h4>UV Index: {this.props.currentUV}</h4>
+            <h3>Currently: </h3>
             <img src={this.iconSwitch(this.props.currentIcon, this.props.currentTemp)} 
                  alt={this.props.currentIcon} 
                  title={this.props.currentIcon}
                  height='100' width='100'
             />
+            <h3>{this.props.currentSummary}</h3>
+            <div className='card-row'>
+            <div className='card-row-child'>
+            <h4>Current Temp: {this.props.currentTemp}&#176; F</h4>
+            <h4>Dew Point: {this.props.currentDew}&#176; F</h4>
+            <h4>Winds: {this.windSwitch(this.props.currentWindDir) + ' ' + this.props.currentWind} mph</h4>
+            </div>
+            <div className='card-row-child'>
+            <h4>Humidity: {this.props.currentHumid}%</h4>
+            <h4>Visibility: {this.props.currentVis} miles</h4>
+            <h4>UV Index: {this.props.currentUV}</h4>
+            </div>
+            </div>
+            
         </div>
     );  
     }
