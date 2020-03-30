@@ -44,6 +44,7 @@ class Location extends React.Component {
                 <option value='?lat=43.158&lon=-77.5996'>Rochester, NY</option>
                 <option value='?lat=37.7950&lon=-122.4190'>San Francisco, CA</option>
                 <option value='?lat=-33.8791&lon=151.1029'>Sydney, AUS</option>
+                <option value='?lat=35.6820&lon=139.7575'>Tokyo, JPN</option>
                 <option value='?lat=38.8896&lon=-77.0344'>Washington, DC</option>
                 <option value='?lat=49.8913&lon=-97.1389'>Winnipeg, CAN</option>
             </select>

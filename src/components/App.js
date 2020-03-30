@@ -4,13 +4,23 @@ import WeatherCard from './WeatherCard';
 import CurrentCard from './CurrentCard';
 import Location from './Location';
 import '../styles/App.css';
-import moment from 'moment';
+import moment from 'moment-timezone';
+
+import rain from '../images/rain.png';
+import sun from '../images/sun.png';
+import partlyCloudy from '../images/partly-cloudy.png';
+import cloudy from '../images/cloudy.png';
+import snow from '../images/snow.png';
+import sleet from '../images/sleet.png';
+import wind from '../images/wind.png';
+import hot from '../images/hot.png';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
+      timezone: null,
       currentIcon: null, 
       currentSummary: null, 
       currentTemp: null,
@@ -37,6 +47,7 @@ class App extends React.Component {
 
       console.log(response.data)
       this.setState({
+        timezone: response.data.timezone,
         currentIcon: response.data.current.icon,
         currentSummary: response.data.current.summary, 
         currentTemp: response.data.current.temperature,
@@ -54,12 +65,63 @@ class App extends React.Component {
     this.getWeather('?lat=37.5260&lon=-77.4416');
   }
 
+  iconSwitch(param1, param2){
+    if(param2 < 90){
+        switch(param1){
+        case 'rain':
+            return rain;
+        case 'partly-cloudy-day':
+            return partlyCloudy;
+        case 'cloudy':
+            return cloudy;
+        case 'clear-day':
+            return sun;
+        case 'sleet':
+            return sleet;
+        case 'snow':
+            return snow;
+        case 'wind':
+            return wind;
+        case 'fog':
+            return cloudy;
+        default:
+            return sun;
+        }
+    } else {
+        return hot;
+    }
+    
+}
+
+windSwitch(param) {
+    switch(true){
+        case (param >= 338 || param < 22):
+            return 'N'
+        case (param >= 22 && param < 68):
+            return 'NE'
+        case (param >= 68 && param < 112):
+            return 'E'
+        case (param >= 112 && param < 158):
+            return 'ESE'
+        case (param >= 158 && param < 202):
+            return 'S'
+        case (param >= 202 && param < 248):
+            return 'SW'
+        case (param >= 248 && param < 292):
+            return 'W'
+        case (param >= 292 && param < 338):
+            return 'NW'
+        default:
+            return 'Wind Dir'
+    }
+}
+
   render() {
     const cards =[]
 
-    for (let i = 1; i < 8; i++){
+    for (let i = 0; i < 8; i++){
       cards.push(<WeatherCard 
-        time={moment.unix(this.state.daily[i].time).format('dddd - MMM Do')}
+        time={moment.tz(moment.unix(this.state.daily[i].time),(this.state.timezone)).format('dddd - MMM Do')}
         highTemp={Math.floor(this.state.daily[i].temperatureHigh)}
         lowTemp={Math.floor(this.state.daily[i].temperatureLow)} 
         precipProb={Math.floor(this.state.daily[i].precipProbability * 100)}
@@ -70,6 +132,8 @@ class App extends React.Component {
         windDir={this.state.daily[i].windBearing}
         uvIndex={this.state.daily[i].uvIndex}
         dewPoint={Math.floor(this.state.daily[i].dewPoint)}
+        iconSwitch={this.iconSwitch}
+        windSwitch={this.windSwitch}
       />)
     }
 
@@ -89,15 +153,21 @@ class App extends React.Component {
             currentUV={this.state.currentUV}
             currentVis={Math.floor(this.state.currentVis)}
             currentDew={Math.floor(this.state.currentDew)}
+            iconSwitch={this.iconSwitch}
+            windSwitch={this.windSwitch}
           />
           </div>
           <div className='card-column'>
           {cards[0]}{cards[1]}{cards[2]}{cards[3]}
           </div>
           <div className='card-column'>
-          {cards[4]}{cards[5]}{cards[6]}
+          {cards[4]}{cards[5]}{cards[6]}{cards[7]}
           </div>
-          <footer>Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' target='_blank'>icon lauk</a></footer>
+          <footer>
+          Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' target='_blank'>icon lauk</a><br/>
+          Weather data provided by Dark Sky API <br/>
+          &copy; Dellinco Enterprises 2020
+          </footer>
         </div>
       
       </div>
