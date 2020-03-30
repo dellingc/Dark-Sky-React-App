@@ -12,8 +12,13 @@ class App extends React.Component {
     
     this.state = {
       currentIcon: null, 
-      currentSky: null, 
-      currentTemp: null, 
+      currentSummary: null, 
+      currentTemp: null,
+      currentWind: null,
+      currentHumid: null,
+      currentWindDir: null,
+      currentUV: null,
+      currentVis: null, 
       daily: [
         {temperatureHigh: 'loading', temperatureLow: 'loading', precipProbablility: 'loading'},
         {temperatureHigh: 'loading', temperatureLow: 'loading', precipProbablility: 'loading'},
@@ -33,8 +38,13 @@ class App extends React.Component {
       console.log(response.data)
       this.setState({
         currentIcon: response.data.current.icon,
-        currentSky: response.data.current.summary, 
-        currentTemp: response.data.current.temperature, 
+        currentSummary: response.data.current.summary, 
+        currentTemp: response.data.current.temperature,
+        currentWind: response.data.current.windSpeed,
+        currentWindDir: response.data.current.windBearing,
+        currentHumid: response.data.current.humidity,
+        currentUV: response.data.current.uvIndex,
+        currentVis: response.data.current.visibility, 
         daily: response.data.daily.data,
       })
   }
@@ -61,16 +71,25 @@ class App extends React.Component {
       <div className='content'>
         <Location callAPI={this.getWeather}/>
         <div className='cards'>
+        <div>
           <CurrentCard 
             time={moment.unix(this.state.daily[0].time).format('dddd - MMM Do')}
             currentIcon={this.state.currentIcon}
-            currentSky={this.state.currentSky}
+            currentSummary={this.state.currentSummary}
             currentTemp={Math.floor(this.state.currentTemp)}
-            highTemp={Math.floor(this.state.daily[0].temperatureHigh)}
-            lowTemp={Math.floor(this.state.daily[0].temperatureLow)} 
-            precipProb={Math.floor(this.state.daily[0].precipProbability *100)}
+            currentWind={Math.floor(this.state.currentWind)}
+            currentWindDir={this.state.currentWindDir}
+            currentHumid={Math.floor(this.state.currentHumid * 100)}
+            currentUV={this.state.currentUV}
+            currentVis={Math.floor(this.state.currentVis)}
           />
-          {cards}
+          </div>
+          <div className='card-column'>
+          {cards[0]}{cards[1]}{cards[2]}{cards[3]}
+          </div>
+          <div className='card-column'>
+          {cards[4]}{cards[5]}{cards[6]}
+          </div>
           <footer>Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' target='_blank'>icon lauk</a></footer>
         </div>
       

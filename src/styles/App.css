@@ -17,5 +17,9 @@
   margin-bottom: 10px;
 }
 
+.card-column {
+  display: flex;
+  flex-direction: row;
+}
 
 
