@@ -73,12 +73,15 @@ class CurrentCard extends React.Component {
             <h3>Currently:</h3>
             <h4>Current Temp: {this.props.currentTemp}&#176; F</h4>
             <h4>Conditions: {this.props.currentSummary}</h4>
-            <h4>Winds: {this.props.currentWind} mph</h4>
-            <h4>Wind Direction: {this.windSwitch(this.props.currentWindDir)}</h4>
+            <h4>Winds: {this.windSwitch(this.props.currentWindDir) + ' ' + this.props.currentWind} mph</h4>
             <h4>Humidity: {this.props.currentHumid}%</h4>
             <h4>Visibility: {this.props.currentVis} miles</h4>
             <h4>UV Index: {this.props.currentUV}</h4>
-            <img src={this.iconSwitch(this.props.currentIcon, this.props.currentTemp)} alt='current' height='100' width='100'/>
+            <img src={this.iconSwitch(this.props.currentIcon, this.props.currentTemp)} 
+                 alt={this.props.currentIcon} 
+                 title={this.props.currentIcon}
+                 height='100' width='100'
+            />
         </div>
     );  
     }

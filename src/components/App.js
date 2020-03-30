@@ -64,6 +64,10 @@ class App extends React.Component {
         precipProb={Math.floor(this.state.daily[i].precipProbability * 100)}
         summary={this.state.daily[i].summary}
         icon={this.state.daily[i].icon}
+        windSpeed={Math.floor(this.state.daily[i].windSpeed)}
+        humidity={Math.floor(this.state.daily[i].humidity * 100)}
+        windDir={this.state.daily[i].windBearing}
+        uvIndex={this.state.daily[i].uvIndex}
       />)
     }
 
