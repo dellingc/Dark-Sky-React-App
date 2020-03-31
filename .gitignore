@@ -50,3 +50,5 @@ sketch
 .history
 
 # End of https://www.gitignore.io/api/react,visualstudiocode
+# Local Netlify folder
+.netlify
