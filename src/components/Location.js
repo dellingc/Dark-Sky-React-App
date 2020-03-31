@@ -7,6 +7,7 @@ class Location extends React.Component {
         this.state = { location: '', city: 'Richmond, VA', newCity: ''}
         this.btn = React.createRef();
         this.handleChange = this.handleChange.bind(this);
+        this.getLocalWeather = this.getLocalWeather.bind(this);
     }
 
 
@@ -26,10 +27,16 @@ class Location extends React.Component {
         }
     }
 
+    getLocalWeather() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.props.callAPI(`?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+        }, function(error) {alert(`Error: ${error.message}`); console.log(error)})
+    }
+
 
     render(){
        return(
-        <div>
+        <div id='city-select'>
             <form onSubmit={this.onFormSubmit} onChange={this.handleChange}>
             <select id='location'>
                 <option value=''>---</option>
@@ -51,7 +58,8 @@ class Location extends React.Component {
             <input type='submit' value='Get Weather' ref={this.btn} id='sbmt' disabled="disabled"></input>
             </form>
 
-            <h2>Weather for {this.state.city}</h2>
+            <button onClick={this.getLocalWeather}>Get Local Weather</button>
+            <h2 id='city-info'>Weather for {this.state.city}</h2>
         </div>
     ) 
     }

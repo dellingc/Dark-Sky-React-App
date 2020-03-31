@@ -8,3 +8,11 @@
     border: none;
     margin-left: 5px;
 }
+
+#city-info {
+    color: white;
+}
+
+#city-select {
+    margin-top: 20px;
+}

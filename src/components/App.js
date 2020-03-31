@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.getWeather('?lat=37.5260&lon=-77.4416');
+    this.getWeather('?lat=37.5260&lon=-77.4416')
   }
 
   iconSwitch(param1, param2){
