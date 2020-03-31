@@ -14,6 +14,11 @@ import snow from '../images/snow.png';
 import sleet from '../images/sleet.png';
 import wind from '../images/wind.png';
 import hot from '../images/hot.png';
+import clearMoon from '../images/clear-moon.png';
+import rainMoon from '../images/rainy-moon.png';
+import snowMoon from '../images/snow-moon.png';
+import cloudMoon from '../images/cloudy-moon.png';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +26,7 @@ class App extends React.Component {
     
     this.state = {
       timezone: null,
+      currentTime: null,
       currentIcon: null, 
       currentSummary: null, 
       currentTemp: null,
@@ -48,6 +54,7 @@ class App extends React.Component {
       console.log(response.data)
       this.setState({
         timezone: response.data.timezone,
+        currentTime: response.data.current.time,
         currentIcon: response.data.current.icon,
         currentSummary: response.data.current.summary, 
         currentTemp: response.data.current.temperature,
@@ -65,11 +72,17 @@ class App extends React.Component {
     this.getWeather('?lat=37.5260&lon=-77.4416')
   }
 
-  iconSwitch(param1, param2){
+  //param1 = api icon text, param2 = temp, param3 = time
+  iconSwitch(param1, param2, param3){
     if(param2 < 90){
         switch(param1){
-        case 'rain':
-            return rain;
+        case 'rain': {
+          if(param3 > 1930 || param3 < 700){
+            return rainMoon
+          } else {
+            return rain
+          }
+        }
         case 'partly-cloudy-day':
             return partlyCloudy;
         case 'cloudy':
@@ -78,19 +91,27 @@ class App extends React.Component {
             return sun;
         case 'sleet':
             return sleet;
-        case 'snow':
-            return snow;
+        case 'snow': {
+          if(param3 > 1930 || param3 < 700){
+            return snowMoon
+          } else {
+            return snow
+          }
+        }
         case 'wind':
             return wind;
         case 'fog':
             return cloudy;
+        case 'clear-night':
+            return clearMoon;
+        case 'partly-cloudy-night':
+            return cloudMoon;
         default:
             return sun;
         }
-    } else {
-        return hot;
+    }else {
+      return hot
     }
-    
 }
 
 windSwitch(param) {
@@ -141,35 +162,38 @@ windSwitch(param) {
       <div className='content'>
         <Location callAPI={this.getWeather}/>
         <div className='cards'>
-        <div>
-          <CurrentCard 
-            time={moment.unix(this.state.daily[0].time).format('dddd - MMM Do')}
-            currentIcon={this.state.currentIcon}
-            currentSummary={this.state.currentSummary}
-            currentTemp={Math.floor(this.state.currentTemp)}
-            currentWind={Math.floor(this.state.currentWind)}
-            currentWindDir={this.state.currentWindDir}
-            currentHumid={Math.floor(this.state.currentHumid * 100)}
-            currentUV={this.state.currentUV}
-            currentVis={Math.floor(this.state.currentVis)}
-            currentDew={Math.floor(this.state.currentDew)}
-            iconSwitch={this.iconSwitch}
-            windSwitch={this.windSwitch}
-          />
+          <div>
+            <CurrentCard 
+              currentTime={moment.tz(moment.unix(this.state.currentTime),(this.state.timezone)).format('HHmm')}
+              currentIcon={this.state.currentIcon}
+              currentSummary={this.state.currentSummary}
+              currentTemp={Math.floor(this.state.currentTemp)}
+              currentWind={Math.floor(this.state.currentWind)}
+              currentWindDir={this.state.currentWindDir}
+              currentHumid={Math.floor(this.state.currentHumid * 100)}
+              currentUV={this.state.currentUV}
+              currentVis={Math.floor(this.state.currentVis)}
+              currentDew={Math.floor(this.state.currentDew)}
+              iconSwitch={this.iconSwitch}
+              windSwitch={this.windSwitch}
+            />
           </div>
           <div className='card-column'>
-          {cards[0]}{cards[1]}{cards[2]}{cards[3]}
+            {cards[0]}{cards[1]}{cards[2]}{cards[3]}
           </div>
           <div className='card-column'>
-          {cards[4]}{cards[5]}{cards[6]}{cards[7]}
+            {cards[4]}{cards[5]}{cards[6]}{cards[7]}
           </div>
           <footer>
-          Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' target='_blank'>icon lauk</a><br/>
-          Weather data provided by Dark Sky API <br/>
+          Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' 
+                              target='_blank'
+                              rel="noopener noreferrer">icon lauk</a><br/>
+          Weather data provided by <a href='https://www.darksky.net'
+                                      target='_blank'
+                                      rel='noopener noreferrer'>Dark Sky API</a><br/>
           &copy; Dellinco Enterprises 2020
           </footer>
         </div>
-      
       </div>
     )
   }

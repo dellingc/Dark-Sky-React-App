@@ -9,10 +9,24 @@
     margin-left: 5px;
 }
 
-#city-info {
+#city-info, h2 {
     color: white;
 }
 
 #city-select {
     margin-top: 20px;
+}
+
+#local-btn {
+    font-size: 16px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    position: relative;
+    color: white;
+    height: 20px;
+    border: none;
+}
+
+#local-btn:focus {
+    outline: none;
 }

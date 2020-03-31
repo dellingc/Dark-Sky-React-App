@@ -25,6 +25,11 @@
 footer {
   margin-top: 20px;
   margin-bottom: 15px;
+  color: white;
+}
+
+footer a {
+  color: white;
 }
 
 @media only screen and (max-width: 1000px){

@@ -22,21 +22,23 @@ class Location extends React.Component {
     handleChange(e) {
         this.setState({location: e.target.value, newCity: e.target[e.target.selectedIndex].text})
         this.btn.current.removeAttribute('disabled')
-        if(e.target.value == ''){
+        if(e.target.value === ''){
             this.btn.current.setAttribute('disabled', 'disabled')
         }
     }
 
     getLocalWeather() {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.props.callAPI(`?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
-        }, function(error) {alert(`Error: ${error.message}`); console.log(error)})
+        navigator.geolocation.getCurrentPosition((position) => { 
+            this.props.callAPI(`?lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+            this.setState({city: 'your current location'})
+        }, function(error) {alert(`Error: ${error.message}`)})
     }
 
 
     render(){
        return(
         <div id='city-select'>
+        <h2>Select a city</h2>
             <form onSubmit={this.onFormSubmit} onChange={this.handleChange}>
             <select id='location'>
                 <option value=''>---</option>
@@ -58,7 +60,8 @@ class Location extends React.Component {
             <input type='submit' value='Get Weather' ref={this.btn} id='sbmt' disabled="disabled"></input>
             </form>
 
-            <button onClick={this.getLocalWeather}>Get Local Weather</button>
+            <h2>Get your local weather</h2>
+            <button id='local-btn' onClick={this.getLocalWeather}>Get Local Weather</button>
             <h2 id='city-info'>Weather for {this.state.city}</h2>
         </div>
     ) 
