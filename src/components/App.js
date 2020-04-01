@@ -3,6 +3,7 @@ import darksky from '../api/darksky';
 import WeatherCard from './WeatherCard';
 import CurrentCard from './CurrentCard';
 import Location from './Location';
+import Loading from './Loading';
 import '../styles/App.css';
 import moment from 'moment-timezone';
 
@@ -25,6 +26,7 @@ class App extends React.Component {
     super(props);
     
     this.state = {
+      loading: true,
       timezone: null,
       currentTime: null,
       currentIcon: null, 
@@ -49,10 +51,11 @@ class App extends React.Component {
   }
 
   getWeather = async (query) => {
+      this.setState({loading: true})
       const response = await darksky.get(query)
 
-      console.log(response.data)
       this.setState({
+        loading: false,
         timezone: response.data.timezone,
         currentTime: response.data.current.time,
         currentIcon: response.data.current.icon,
@@ -139,6 +142,7 @@ windSwitch(param) {
 
   render() {
     const cards =[]
+    const {loading} = this.state;
 
     for (let i = 0; i < 8; i++){
       cards.push(<WeatherCard 
@@ -160,9 +164,10 @@ windSwitch(param) {
 
     return(
       <div className='content'>
-        <Location callAPI={this.getWeather}/>
+        <Location getWeather={this.getWeather}/>
         <div className='cards'>
           <div>
+          {loading ? <Loading /> : 
             <CurrentCard 
               currentTime={moment.tz(moment.unix(this.state.currentTime),(this.state.timezone)).format('HHmm')}
               currentIcon={this.state.currentIcon}
@@ -177,12 +182,13 @@ windSwitch(param) {
               iconSwitch={this.iconSwitch}
               windSwitch={this.windSwitch}
             />
+          }
           </div>
           <div className='cards-row'>
-            {cards[0]}{cards[1]}{cards[2]}{cards[3]}
+            {loading ? <div></div> :cards[0]}{loading ? <div></div> :cards[1]}{loading ? <div></div> :cards[2]}{loading ? <div></div> :cards[3]}
           </div>
           <div className='cards-row'>
-            {cards[4]}{cards[5]}{cards[6]}{cards[7]}
+            {loading ? <div></div> :cards[4]}{loading ? <div></div> :cards[5]}{loading ? <div></div> :cards[6]}{loading ? <div></div> :cards[7]}
           </div>
           <footer>
           Icons created by <a href='https://www.iconfinder.com/iconsets/weather-and-forecast-free' 
