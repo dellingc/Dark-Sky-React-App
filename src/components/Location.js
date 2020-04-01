@@ -15,7 +15,7 @@ class Location extends React.Component {
         e.preventDefault();
 
         this.setState({city: this.state.newCity})
-        this.props.callAPI(this.state.location)
+        this.props.getWeather(this.state.location)
         this.btn.current.setAttribute('disabled', 'disabled')
     }
 
@@ -29,7 +29,7 @@ class Location extends React.Component {
 
     getLocalWeather() {
         navigator.geolocation.getCurrentPosition((position) => { 
-            this.props.callAPI(`?lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+            this.props.getWeather(`?lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
             this.setState({city: 'your current location'})
         }, function(error) {alert(`Error: ${error.message}`)})
     }
