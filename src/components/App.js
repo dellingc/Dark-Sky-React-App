@@ -178,10 +178,10 @@ windSwitch(param) {
               windSwitch={this.windSwitch}
             />
           </div>
-          <div className='card-column'>
+          <div className='cards-row'>
             {cards[0]}{cards[1]}{cards[2]}{cards[3]}
           </div>
-          <div className='card-column'>
+          <div className='cards-row'>
             {cards[4]}{cards[5]}{cards[6]}{cards[7]}
           </div>
           <footer>

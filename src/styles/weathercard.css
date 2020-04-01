@@ -9,18 +9,25 @@
     background-color: #E3E6EA;
 }
 
-.card-row {
+.ind-card-row {
     display: flex;
     flex-direction: row;
 }
 
-.card-row-child-l {
+.ind-card-row-child-l {
     margin-right: 15px;
     margin-left: 5px;
 }
 
-.card-row-child-r {
+.ind-card-row-child-r {
     margin-left: 15px;
     margin-right: 5px;
 }
 
+#summary {
+    word-wrap: break-word;
+}
+
+@media only screen and (max-width: 1000px){
+    .weather-card {max-width: 400px;}
+  }

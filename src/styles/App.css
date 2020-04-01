@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 
@@ -17,7 +19,7 @@
   margin-bottom: 10px;
 }
 
-.card-column {
+.cards-row {
   display: flex;
   flex-direction: row;
 }
@@ -33,5 +35,5 @@ footer a {
 }
 
 @media only screen and (max-width: 1000px){
-  .card-column {flex-direction: column}
+  .cards-row {flex-direction: column}
 }
