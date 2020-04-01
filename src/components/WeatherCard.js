@@ -10,7 +10,7 @@ function WeatherCard(props) {
                  alt={props.icon} 
                  width='100' height='100'
                  title={props.icon}/>
-            <h3 id='summary'>Expect clear skies throughout the day with possible storms at night</h3>
+            <h3 id='summary'>{props.summary}</h3>
             <div className='ind-card-row'>
                 <div className='ind-card-row-child-l'>
                     <h4>High: {props.highTemp}&#176; F</h4>
