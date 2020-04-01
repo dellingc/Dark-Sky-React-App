@@ -10,14 +10,14 @@ function WeatherCard(props) {
                  alt={props.icon} 
                  width='100' height='100'
                  title={props.icon}/>
-            <h3>{props.summary}</h3>
-            <div className='card-row'>
-                <div className='card-row-child-l'>
+            <h3 id='summary'>Expect clear skies throughout the day with possible storms at night</h3>
+            <div className='ind-card-row'>
+                <div className='ind-card-row-child-l'>
                     <h4>High: {props.highTemp}&#176; F</h4>
                     <h4>Low: {props.lowTemp}&#176; F</h4>
                     <h4>Precip Chance: {props.precipProb}%</h4>
                 </div>
-                <div className='card-row-child-r'>
+                <div className='ind-card-row-child-r'>
                     <h4>Winds: {props.windSwitch(props.windDir) + ' ' + props.windSpeed} mph</h4>
                     <h4>Humidity: {props.humidity}%</h4>
                     <h4>UV Index: {props.uvIndex}</h4>
