@@ -5,7 +5,11 @@ function Loading(props) {
     return(
         <div>
             <h2>Loading...</h2>
-            <div className='loader'></div>
+            <div class="dots-container">
+                <div class="loader1"></div>
+                <div class="loader2"></div>
+                <div class="loader3"></div>
+            </div>
         </div>
     )
 }
