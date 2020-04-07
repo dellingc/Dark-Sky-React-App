@@ -6,9 +6,9 @@ function Loading(props) {
         <div>
             <h2>Loading...</h2>
             <div class="dots-container">
-                <div class="loader1"></div>
-                <div class="loader2"></div>
-                <div class="loader3"></div>
+                <div className="loader1"></div>
+                <div className="loader2"></div>
+                <div className="loader3"></div>
             </div>
         </div>
     )
