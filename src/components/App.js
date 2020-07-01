@@ -77,7 +77,7 @@ class App extends React.Component {
 
   //param1 = api icon text, param2 = temp, param3 = time
   iconSwitch(param1, param2, param3){
-    if(param2 < 90){
+    if(param2 < 95){
         switch(param1){
         case 'rain': {
           if(param3 > 1930 || param3 < 700){
