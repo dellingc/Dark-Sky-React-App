@@ -1,3 +1,5 @@
+This application uses the redis-cache-api to display current weather data and the 7 day forecast for various locations. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
