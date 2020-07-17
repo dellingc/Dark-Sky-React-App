@@ -1,9 +1,9 @@
 ## Dark Sky React App
 
-This application displays the data retrieved from the [Dark Sky API](https://github.com/dellingc/dark-sky-api). 
+This application displays the data retrieved from the [Weather API](https://github.com/dellingc/weather-api). 
 
 ## Instructions
-Click this [link](https://github.com/dellingc/dark-sky-api) to get the API setup. Follow readme instructions.
+Click this [link](https://github.com/dellingc/weather-api) to get the API setup. Follow readme instructions.
 
 Once the API is setup and running. Open a second terminal.
 Clone the repository and install node packages
