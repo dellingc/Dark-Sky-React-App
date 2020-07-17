@@ -1,15 +1,15 @@
 ## Dark Sky React App
 
-This application displays the data retrieved from the [Dark Sky API](https://github.com/dellingc/Dark-Sky-API). 
+This application displays the data retrieved from the [Dark Sky API](https://github.com/dellingc/dark-sky-api). 
 
 ## Instructions
-Click this [link](https://github.com/dellingc/Dark-Sky-API) to get the API setup. Follow readme instructions.
+Click this [link](https://github.com/dellingc/dark-sky-api) to get the API setup. Follow readme instructions.
 
 Once the API is setup and running. Open a second terminal.
 Clone the repository and install node packages
 ```
-git clone https://github.com/dellingc/Dark-Sky-React-App.git
-cd Dark-Sky-React
+git clone https://github.com/dellingc/dark-sky-react-app.git
+cd dark-sky-react
 npm install
 npm run start
 ```
