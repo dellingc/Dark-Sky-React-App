@@ -1,4 +1,27 @@
-This application uses the redis-cache-api to display current weather data and the 7 day forecast for various locations. 
+## Dark Sky React App
+
+This application displays the data retrieved from the [Dark Sky API](https://github.com/dellingc/Dark-Sky-API). 
+
+## Instructions
+Click this [link](https://github.com/dellingc/Dark-Sky-API) to get the API setup. Follow readme instructions.
+
+Once the API is setup and running. Open a second terminal.
+Clone the repository and install node packages
+```
+git clone https://github.com/dellingc/dark-sky-react.git
+cd dark-sky-react
+npm install
+npm run start
+```
+
+## Troubleshooting
+If you encounter this error `Error: Cannot find module 'nan’` when attempting `npm install` follow the steps below.
+
+```
+npm install nan
+npm install
+```
+The app is configured to run at http://localhost:3000, this may need to be changed in your local environment. The Dark Sky API server must be running in order to recieve the data to display.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
