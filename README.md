@@ -8,8 +8,8 @@ Click this [link](https://github.com/dellingc/Dark-Sky-API) to get the API setup
 Once the API is setup and running. Open a second terminal.
 Clone the repository and install node packages
 ```
-git clone https://github.com/dellingc/dark-sky-react.git
-cd dark-sky-react
+git clone https://github.com/dellingc/Dark-Sky-React-App.git
+cd Dark-Sky-React
 npm install
 npm run start
 ```
