@@ -8,8 +8,8 @@ Click this [link](https://github.com/dellingc/weather-api) to get the API setup.
 Once the API is setup and running. Open a second terminal.
 Clone the repository and install node packages
 ```
-git clone https://github.com/dellingc/dark-sky-react-app.git
-cd dark-sky-react
+git clone https://github.com/dellingc/weather-react-app.git
+cd weather-react-app
 npm install
 npm run start
 ```
